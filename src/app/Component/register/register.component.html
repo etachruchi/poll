@@ -1,0 +1,62 @@
+<div class="container">
+
+    <div class="sub-container">
+        <div class="heading">
+            <h2>Register</h2>
+            <h6>Please fill the form to create an account !</h6>
+        </div>
+        <form class="form-horizontal" [formGroup]="SignupForm" #formDir="ngForm" (ngSubmit)="onSubmit(SignupForm)">
+            <div class="input">
+                <span class="subname"> Email</span>
+                <input type="email" class="form-control" placeholder="email" formControlName="email">
+                <div *ngIf="SignupForm.controls['email'].errors && !SignupForm.controls['email'].pristine" class="alert alert-danger">
+                    <div *ngIf="SignupForm.controls['email'].errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="SignupForm.controls['email'].errors.email">
+                        Email is invalid.
+                    </div>
+                    <div *ngIf="SignupForm.controls['email'].errors.minlength">
+                        atleast 8 character required.
+                    </div>
+                </div>
+                <span class="subname"> password</span>
+                <input type="password" class="form-control" placeholder="password" formControlName="password">
+                <div *ngIf="SignupForm.controls['password'].errors && !SignupForm.controls['password'].pristine" class="alert alert-danger">
+                    <div *ngIf="SignupForm.controls['password'].errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="SignupForm.controls['password'].errors.minlength">
+                        atleast 4 character required.
+                    </div>
+                    <div *ngIf="SignupForm.controls['password'].errors.pattern">
+                        pattern should be one letter ,one number and one special character.
+                    </div>
+                </div>
+                <span class="subname"> confirm password</span>
+                <input type="password" class="form-control" placeholder=" confirm password" formControlName="conpassword">
+                <div *ngIf="SignupForm.controls['conpassword'].errors && !SignupForm.controls['conpassword'].pristine" class="alert alert-danger">
+                    <div *ngIf="SignupForm.controls['conpassword'].errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf=" SignupForm.controls['conpassword'].errors ||SignupForm.controls ['password'].errors?.mismatch ">
+                        Password not Match
+                    </div>
+                </div>
+                <div class="selector">
+                    <select class="selectpicker">
+                    <option>None</option>
+                    <option>Admin</option>
+                    <option>Guest</option>
+                    </select>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+    <p>Have allready accopunt
+        <a routerLink="/login">Login</a> here.
+    </p>
+
+</div>
