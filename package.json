@@ -20,7 +20,10 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+<<<<<<< HEAD
     "bootstrap": "^4.1.3",
+=======
+>>>>>>> 72d3bff18c00b91745e44e05b76c5d1adde6cc5b
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

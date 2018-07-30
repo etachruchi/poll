@@ -26,14 +26,21 @@ export class RegisterComponent implements OnInit {
           ),
           Validators.minLength(4)
         ]),
+<<<<<<< HEAD
         Role: new FormControl("", [Validators.required,]),
+=======
+>>>>>>> 72d3bff18c00b91745e44e05b76c5d1adde6cc5b
         conpassword: new FormControl("", [
           Validators.required,
           Validators.pattern(
             "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}"
           ),
           Validators.minLength(4)
+<<<<<<< HEAD
         ]),
+=======
+        ])
+>>>>>>> 72d3bff18c00b91745e44e05b76c5d1adde6cc5b
       },
       this.pwdMatchValidator
     );

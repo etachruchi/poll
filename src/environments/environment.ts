@@ -3,8 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+<<<<<<< HEAD
   production: false,
   apiBase: "https://secure-refuge-14993.herokuapp.com/"
+=======
+  production: false
+>>>>>>> 72d3bff18c00b91745e44e05b76c5d1adde6cc5b
 };
 
 /*
