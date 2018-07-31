@@ -3,22 +3,22 @@
         <h4>Add-poll</h4>
     </div>
     <div class="pollform">
-        <form class="form-horizontal" [formGroup]="addpollForm" #formDir="ngForm" (ngSubmit)="onSubmit(addpollForm)">
+        <form class="form-horizontal" [formGroup]="addpollForm" (ngSubmit)="onSubmit(addpollForm)">
             <div class="form-group">
-                <span class="polltittle"> Tittle</span>
-                <input type="text" class="form-control" placeholder="Tittle" formControlName="tittle">
+                <span class="polltitle"> Title</span>
+                <input type="text" class="form-control" placeholder="Title" formControlName="title">
                 <div *ngIf="addpollForm.controls['tittle'].errors && !addpollForm.controls['tittle'].pristine" class="alert alert-danger">
                     <div [hidden]="addpollForm.controls['tittle'].errors.required">
                         Tittile is required.
                     </div>
 
-                    <div [hidden]="addpollForm.controls['tittle'].errors.minlength">
+                    <div [hidden]="addpollForm.controls['title'].errors.minlength">
                         atleast 8 character required.
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <span class="polltittle"> Option:-1</span>
+                <span class="polltitle"> Option:-1</span>
                 <input type="text" class="form-control" placeholder="option1" formControlName="option1">
                 <div *ngIf="addpollForm.controls['option1'].errors && !addpollForm.controls['option1'].pristine" class="alert alert-danger">
                     <div [hidden]="addpollForm.controls['option1'].errors.required">
@@ -28,7 +28,7 @@
                         atleast 2 character required.
                     </div>
                 </div>
-                <span class="polltittle"> Option:-2</span>
+                <span class="polltitle"> Option:-2</span>
                 <input type="text" class="form-control" placeholder="option2" formControlName="option2">
                 <div *ngIf="addpollForm.controls['option2'].errors && !addpollForm.controls['option2'].pristine" class="alert alert-danger">
                     <div [hidden]="addpollForm.controls['option2'].errors.required">
@@ -38,7 +38,7 @@
                         atleast 2 character required.
                     </div>
                 </div>
-                <span class="polltittle"> Option:-3</span>
+                <span class="polltitle"> Option:-3</span>
                 <input type="text" class="form-control" placeholder="option3" formControlName="option3">
                 <div *ngIf="addpollForm.controls['option3'].errors && !addpollForm.controls['option3'].pristine" class="alert alert-danger">
                     <div [hidden]="addpollForm.controls['option3'].errors.required">
@@ -48,7 +48,7 @@
                         atleast 2 character required.
                     </div>
                 </div>
-                <span class="polltittle"> Option:-3</span>
+                <span class="polltitle"> Option:-3</span>
                 <input type="text" class="form-control" placeholder="option4" formControlName="option4">
                 <div *ngIf="addpollForm.controls['option4'].errors && !addpollForm.controls['option4'].pristine" class="alert alert-danger">
                     <div [hidden]="addpollForm.controls['option4'].errors.required">
