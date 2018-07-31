@@ -16,9 +16,9 @@ export class ApiService {
         })
         .subscribe(data => {
           if (data["error"] && data["error"] === 1) {
-            resolve(data);
-          } else {
             reject(data);
+          } else {
+            resolve(data);
           }
         });
     });
@@ -33,9 +33,38 @@ export class ApiService {
         .get(`${environment["apiBase"]}add_user`, { params: params })
         .subscribe(data => {
           if (data["error"] && data["error"] === 1) {
-            resolve(data);
-          } else {
             reject(data);
+          } else {
+            resolve(data);
+          }
+        });
+    });
+  }
+ addpoll(post) {
+    const params = new HttpParams()
+      .set("tittle", post.tittle)
+      .set("options", post.option1 + "____" + post.option2 + "____" + post.option3 +"____"+post.option4);
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${environment["apiBase"]}add_poll`, { params: params })
+        .subscribe(data => {
+          if (data["error"] && data["error"] === 1) {
+            reject(data);
+          } else {
+            resolve(data);
+          }
+        });
+    });
+  }
+  listpoll(post) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${environment["apiBase"]}list_polls`)
+        .subscribe(data => {
+          if (data["error"] && data["error"] === 1) {
+            reject(data);
+          } else {
+            resolve(data);
           }
         });
     });

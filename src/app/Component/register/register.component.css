@@ -36,3 +36,8 @@ p {
     margin-top: 14px;
     margin-left: 5px;
 }
+
+.error>p {
+    color: red;
+    margin-left: 32px;
+}

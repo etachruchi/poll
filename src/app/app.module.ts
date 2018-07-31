@@ -9,11 +9,15 @@ import { RegisterComponent } from './Component/register/register.component';
 import { ApiService } from './services/apiservice';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { SidemenuComponent } from './Component/sidemenu/sidemenu.component';
+import { AddpollComponent } from './Component/addpoll/addpoll.component';
+import { ListComponent } from './Component/list/list.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,RegisterComponent,
+    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, 
   
 
   ],

@@ -31,3 +31,8 @@
 p {
     color: white;
 }
+
+.error>p {
+    color: red;
+    margin-left: 32px;
+}

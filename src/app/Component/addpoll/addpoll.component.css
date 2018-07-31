@@ -1,0 +1,26 @@
+.container {
+    width: 32%;
+    padding: 0 50px 20px;
+    background: linear-gradient(#FFF);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px;
+    font-family: 'Marcellus', serif;
+}
+
+h4 {
+    text-align: center;
+    background-color: #337ab7;
+    height: 20%;
+    padding: 7px;
+    border: 1px solid #337ab7;
+    border-radius: 2px;
+}
+
+.pollform {
+    width: 92%;
+    margin-left: 15px;
+}
+
+.polltittle {
+    margin-top: 10px;
+}

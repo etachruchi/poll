@@ -13,8 +13,8 @@
                     <div *ngIf="SignupForm.controls['email'].errors.required">
                         Email is required.
                     </div>
-                    <div *ngIf="SignupForm.controls['email'].errors.email">
-                        Email is invalid.
+                    <div *ngIf="SignupForm.controls['email'].errors.pattern">
+                        invalid email
                     </div>
                     <div *ngIf="SignupForm.controls['email'].errors.minlength">
                         atleast 8 character required.
@@ -51,9 +51,13 @@
                     </select>
                 </div>
                 <br>
+                <div class="error">
+                    <p *ngIf="errorMessage">{{errorMessage}}</p>
+                </div>
                 <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid">Submit</button>
             </div>
         </form>
+
     </div>
     <p>Have allready accopunt
         <a routerLink="/login">Login</a> here.
