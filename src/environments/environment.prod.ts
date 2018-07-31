@@ -1,4 +1,4 @@
 export const environment = {
-  production: true
- 
+  production: true,
+ apiBase: "https://secure-refuge-14993.herokuapp.com/"
 };

@@ -11,13 +11,13 @@
                         <span class="subname"> Email</span>
                         <input type="email" class="form-control" placeholder="email" formControlName="email">
                         <div *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine" class="alert alert-danger">
-                            <div [hidden]="loginForm.controls['email'].errors.required">
+                            <div *ngIf="loginForm.controls['email'].errors.required">
                                 Email is required.
                             </div>
-                            <div [hidden]="loginForm.controls['email'].errors.email">
+                            <div *ngIf="loginForm.controls['email'].errors.pattern">
                                 Email is invalid.
                             </div>
-                            <div [hidden]="loginForm.controls['email'].errors.minlength">
+                            <div *ngIf="loginForm.controls['email'].errors.minlength">
                                 atleast 8 character required.
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                             <div *ngIf="loginForm.controls['password'].errors.required">
                                 password is required.
                             </div>
-                            <div [hidden]="loginForm.controls['password'].errors.minlength">
+                            <div *ngIf="loginForm.controls['password'].errors.minlength">
                                 atleast 4 character required.
                             </div>
                             <div *ngIf="loginForm.controls['password'].errors.pattern">
@@ -37,7 +37,11 @@
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid">Submit</button>
+                <div class="error">
+                    <p *ngIf="errorMessage">{{errorMessage}}</p>
+                </div>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid || loading">Login</button>
+                <div class="loader"></div>
             </div>
         </form>
     </div>

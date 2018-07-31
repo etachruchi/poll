@@ -13,8 +13,8 @@
                     <div *ngIf="SignupForm.controls['email'].errors.required">
                         Email is required.
                     </div>
-                    <div *ngIf="SignupForm.controls['email'].errors.email">
-                        Email is invalid.
+                    <div *ngIf="SignupForm.controls['email'].errors.pattern">
+                        invalid email
                     </div>
                     <div *ngIf="SignupForm.controls['email'].errors.minlength">
                         atleast 8 character required.
@@ -45,15 +45,22 @@
                 </div>
                 <div class="selector">
                     <select class="selectpicker" formControlName="Role">
-                    <option>None</option>
-                    <option>Admin</option>
-                    <option>Guest</option>
-                    </select>
+                <option>None</option>
+                <option>Admin</option>
+                <option>Guest</option>
+              </select>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid">Submit</button>
+                <i class="fa fa-circle-o-notch"></i>
+                <div class="error">
+                    <p *ngIf="errorMessage">{{errorMessage}}</p>
+                </div>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid || loading">Register
+                <div *ngIf="loading" class="loader"></div>
+                </button>
             </div>
         </form>
+
     </div>
     <p>Have allready accopunt
         <a routerLink="/login">Login</a> here.

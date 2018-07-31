@@ -1,45 +1,33 @@
 .container {
-    border: 1px solid;
-    background-color: #42b3f4;
-    width: 40%;
-    padding: 63px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    width: 32%;
+    padding: 0 50px 20px;
+    background: linear-gradient(#FFF);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px;
+    font-family: 'Marcellus', serif;
 }
 
-.sub-container {
-    background-color: white;
-    border-radius: 13px;
-    padding: 10px;
-}
-
-.heading {
+h4 {
     text-align: center;
+    background-color: #337ab7;
+    height: 20%;
+    padding: 7px;
+    border: 1px solid #337ab7;
+    border-radius: 2px;
 }
 
-.subname {
-    font-weight: 600;
-    float: left;
+.pollform {
+    width: 92%;
+    margin-left: 15px;
+}
+
+.polltitle {
     margin-top: 10px;
 }
 
-.input {
-    padding: 10px;
-    margin: auto 0;
-}
-
-p {
-    color: white;
-}
-
-.error>p {
-    color: red;
-    margin-left: 32px;
-}
-
 .loader {
-    margin-left: 215px;
-    margin-top: -34px;
+    margin-left: 161px;
+    margin-top: -27px;
     border: 6px solid #f3f3f3;
     border-radius: 50%;
     border-top: 6px solid #3498db;
