@@ -42,7 +42,7 @@ export class ApiService {
   }
  addpoll(post) {
     const params = new HttpParams()
-      .set("tittle", post.tittle)
+      .set("title", post.title)
       .set("options", post.option1 + "____" + post.option2 + "____" + post.option3 +"____"+post.option4);
     return new Promise((resolve, reject) => {
       this.http

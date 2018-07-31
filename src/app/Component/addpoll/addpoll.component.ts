@@ -18,7 +18,7 @@ export class AddpollComponent implements OnInit {
   }
   addPollForm() {
     this.addpollForm = new FormGroup({
-      tittle: new FormControl("", [
+      title: new FormControl("", [
         Validators.required,
         Validators.minLength(4)
       ]),
