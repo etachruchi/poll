@@ -10,6 +10,7 @@ import { ApiService } from "../../services/apiservice";
 export class RegisterComponent implements OnInit {
   SignupForm: any;
   errorMessage: String;
+  loading:boolean;
   constructor(public apiServices: ApiService, private router: Router) {}
 
   ngOnInit() {
@@ -46,12 +47,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(formData) {
-    this.apiServices.postlogin(formData.value).then(
+    this.loading= true;
+    this.apiServices.postregister(formData.value).then(
       res => {
+        this.loading=false;
         this.router.navigate(["/login"]);
         this.SignupForm.reset();
+        
 
       }).catch(err => {
+        this.loading = false;
         this.errorMessage = err.data;
       });
   }

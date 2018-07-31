@@ -40,7 +40,8 @@
                 <div class="error">
                     <p *ngIf="errorMessage">{{errorMessage}}</p>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid">Submit</button>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid || loading">Submit</button>
+                <div *ngIf="loading" class="loader"></div>
             </div>
         </form>
     </div>

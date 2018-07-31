@@ -11,6 +11,7 @@ import { ApiService } from "../../services/apiservice";
 export class LoginComponent implements OnInit {
   loginForm: any;
   errorMessage: String;
+  loading:boolean;
   constructor(public apiServices: ApiService, private router: Router) {}
 
   ngOnInit() {
@@ -34,13 +35,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formData) {
-    this.apiServices.postlogin(formData.value).then(
-      res => {
-          this.router.navigate(["/sidemenu"]);
-          this.loginForm.reset();
-       
-      }).catch(err => {
-        this.errorMessage=err.data;
+    this.loading = true;
+    this.apiServices
+      .postlogin(formData.value)
+      .then(res => {
+        this.loading = false;
+        this.router.navigate(["/addpoll"]);
+        this.loginForm.reset();
+      })
+      .catch(err => {
+        this.loading = false;
+        this.errorMessage = err.data;
       });
   }
 }

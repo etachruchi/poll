@@ -45,16 +45,19 @@
                 </div>
                 <div class="selector">
                     <select class="selectpicker" formControlName="Role">
-                    <option>None</option>
-                    <option>Admin</option>
-                    <option>Guest</option>
-                    </select>
+                <option>None</option>
+                <option>Admin</option>
+                <option>Guest</option>
+              </select>
                 </div>
                 <br>
+                <i class="fa fa-circle-o-notch"></i>
                 <div class="error">
                     <p *ngIf="errorMessage">{{errorMessage}}</p>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid">Submit</button>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid || loading">Button
+                <div *ngIf="loading" class="loader"></div>
+                </button>
             </div>
         </form>
 

@@ -11,6 +11,7 @@ import { ApiService } from "../../services/apiservice";
 export class AddpollComponent implements OnInit {
   addpollForm: any;
   errorMessage: String;
+  loading: boolean;
   constructor(public apiServices: ApiService, private router: Router) {}
 
   ngOnInit() {
@@ -42,7 +43,9 @@ export class AddpollComponent implements OnInit {
   }
 
   onSubmit(formData) {
+    this.loading = true;
     this.apiServices.addpoll(formData.value).then(res => {
+      this.loading = false;
       if (res && res["error"]) {
         this.errorMessage = res["data"];
       } else {

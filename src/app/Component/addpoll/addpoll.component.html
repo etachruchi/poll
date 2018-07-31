@@ -60,7 +60,9 @@
                 </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-success btn-block" [disabled]="!addpollForm.valid">Submit</button>
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!addpollForm.valid || loading">Submit
+            <div *ngIf="loading" class="loader"></div>
+            </button>
         </form>
     </div>
 </div>
