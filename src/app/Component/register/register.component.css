@@ -43,6 +43,7 @@ p {
 }
 
 .loader {
+    margin-left: 198px;
     margin-top: -25px;
     border: 6px solid #f3f3f3;
     border-radius: 50%;
