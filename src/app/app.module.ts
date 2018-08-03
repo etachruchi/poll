@@ -12,12 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { SidemenuComponent } from './Component/sidemenu/sidemenu.component';
 import { AddpollComponent } from './Component/addpoll/addpoll.component';
 import { ListComponent } from './Component/list/list.component';
+import { ViewpollComponent } from './Component/viewpoll/viewpoll.component';
+import { VotepollComponent } from './Component/votepoll/votepoll.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, 
+    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, ViewpollComponent, VotepollComponent, 
   
 
   ],

@@ -7,6 +7,19 @@
         </div>
         <form class="form-horizontal" [formGroup]="SignupForm" (ngSubmit)="onSubmit(SignupForm)">
             <div class="input">
+                <span class="subname"> Name</span>
+                <input type="text" class="form-control" placeholder="Username" formControlName="name">
+                <div *ngIf="SignupForm.controls['name'].errors && !SignupForm.controls['name'].pristine" class="alert alert-danger">
+                    <div *ngIf="SignupForm.controls['name'].errors.required">
+                        Name is required.
+                    </div>
+                    <div *ngIf="SignupForm.controls['name'].errors.pattern">
+                        invalid Username
+                    </div>
+                    <div *ngIf="SignupForm.controls['name'].errors.minlength">
+                        atleast 2 character required.
+                    </div>
+                </div>
                 <span class="subname"> Email</span>
                 <input type="email" class="form-control" placeholder="email" formControlName="email">
                 <div *ngIf="SignupForm.controls['email'].errors && !SignupForm.controls['email'].pristine" class="alert alert-danger">
@@ -45,19 +58,19 @@
                 </div>
                 <div class="selector">
                     <select class="selectpicker" formControlName="Role">
-                <option>None</option>
-                <option>Admin</option>
-                <option>Guest</option>
-              </select>
+            <option>None</option>
+            <option>Admin</option>
+            <option>Guest</option>
+          </select>
                 </div>
                 <br>
                 <i class="fa fa-circle-o-notch"></i>
                 <div class="error">
                     <p *ngIf="errorMessage">{{errorMessage}}</p>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" [disabled]="!SignupForm.valid || loading">Register
-                <div *ngIf="loading" class="loader"></div>
-                </button>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="(!SignupForm.valid || loading) ">Register
+          <div *ngIf="loading" class="loader"></div>
+        </button>
             </div>
         </form>
 

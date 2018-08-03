@@ -1,1 +1,42 @@
+<div class="container" *ngIf="list && list.length">
+
+    <div class="heading">
+        <h4>Poll-List
+        </h4>
+    </div>
+
+    <div class="panel-body">
+        <div class="pollallcard">
+            <div class="row">
+                <div class="card" *ngFor="let poll of list" style="width: 18rem;">
+                    <div class="card-body">
+
+                        <h3 class="Title">{{poll.title}}</h3>
+                        <div>
+                            <ul class="list-unstyled">
+                                <li>{{poll.options[0]['options']}}
+                                    <span class="float-right">{{poll.options[0]['vote']}}</span>
+                                </li>
+                                <li>{{poll.options[1]['options']}}
+                                    <span class="float-right">{{poll.options[0]['vote']}}</span>
+                                </li>
+                                <li>{{poll.options[2]['options']}}
+                                    <span class="float-right">{{poll.options[2]['vote']}}</span>
+                                </li>
+                                <li>{{poll.options[3]['options']}}
+                                    <span class="float-right">{{poll.options[0]['vote']}}</span>
+                                </li>
+                            </ul>
+                            <button class="btn btn-info" routerLink="/viewpoll/{{poll.id}}">Edit</button>
+                            <button class="btn btn-danger" (click)="deletePoll(poll.id)">delete</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!(list && list.length)" class="loader">
+</div>
 <app-sidemenu></app-sidemenu>

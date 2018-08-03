@@ -1,36 +1,42 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
+import { reject, resolve } from "q";
 @Injectable()
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  token: any;
+  role: any;
 
+  constructor(private http: HttpClient) {}
   postlogin(post) {
-    const params = new HttpParams()
-      .set("username", post.email)
-      .set("password", post.password);
+    const apidata = { email: post.email, password: post.password };
+
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${environment["apiBase"]}login`, {
-          params: params
-        })
+        .post(`${environment["apiBase"]}login`, apidata)
         .subscribe(data => {
           if (data["error"] && data["error"] === 1) {
             reject(data);
           } else {
             resolve(data);
+            this.token = data["data"].api_token;
+
+            localStorage.setItem("role", data["data"].role);
+            localStorage.setItem("token", this.token);
           }
         });
     });
   }
   postregister(post) {
-    const params = new HttpParams()
-      .set("username", post.email)
-      .set("password", post.password)
-      .set("role", post.role);
+    const apidata = {
+      name: post.name,
+      email: post.email,
+      password: post.password,
+      role: post.Role
+    };
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${environment["apiBase"]}add_user`, { params: params })
+        .post(`${environment["apiBase"]}add_user`, apidata)
         .subscribe(data => {
           if (data["error"] && data["error"] === 1) {
             reject(data);
@@ -40,13 +46,25 @@ export class ApiService {
         });
     });
   }
- addpoll(post) {
-    const params = new HttpParams()
-      .set("title", post.title)
-      .set("options", post.option1 + "____" + post.option2 + "____" + post.option3 +"____"+post.option4);
+  addpoll(post) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        api_token: localStorage.getItem("token")
+      })
+    };
+    const apidata = {
+      title: post.title,
+      options: [
+        { option: post.option1 },
+        { option: post.option2 },
+        { option: post.option3 },
+        { option: post.option4 }
+      ]
+    };
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${environment["apiBase"]}add_poll`, { params: params })
+        .post(`${environment["apiBase"]}add_poll`, apidata, httpOptions)
         .subscribe(data => {
           if (data["error"] && data["error"] === 1) {
             reject(data);
@@ -56,17 +74,57 @@ export class ApiService {
         });
     });
   }
-  listpoll(post) {
-    return new Promise((resolve, reject) => {
-      this.http
-        .get(`${environment["apiBase"]}list_polls`)
-        .subscribe(data => {
-          if (data["error"] && data["error"] === 1) {
-            reject(data);
-          } else {
-            resolve(data);
-          }
-        });
-    });
+ 
+  listpolls() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        api_token: localStorage.getItem("token")
+      })
+    };
+    this.role = localStorage.getItem("role").toLowerCase();
+    if (this.role == "admin") {
+      return this.http.get(`${environment["apiBase"]}list_polls`, httpOptions);
+    } else {
+      return this.http.get(`${environment["apiBase"]}list_poll`, httpOptions);
+    }
   }
+  listpoll() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        api_token: localStorage.getItem("token")
+      })
+    };
+    this.role = localStorage.getItem("role").toLowerCase();
+    return this.http.get(`${environment["apiBase"]}list_poll`, httpOptions);
+  }
+  
+  editpolltitle(id,post) {
+    const apidata = {
+      title: post.title,  
+    };
+    console.log(apidata);
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        api_token: localStorage.getItem("token")
+      })
+    };
+     return this.http.put(`${environment["apiBase"]}update_poll_title/${id}`,apidata, httpOptions);
+  }
+ deletePoll(id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        api_token: localStorage.getItem("token")
+      })
+    };
+    console.log(id);
+    
+    return this.http.delete(`${environment["apiBase"]}delete_poll/${id}`, httpOptions);
+    
+  }
+
 }
