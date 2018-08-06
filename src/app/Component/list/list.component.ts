@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../services/apiservice";
-import { forEach } from "@angular/router/src/utils/collection";
-import { element } from "protractor";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
@@ -11,7 +9,7 @@ import { element } from "protractor";
 export class ListComponent implements OnInit {
   list: any;
   count = 0;
-  id: any;
+  id: number;
   constructor(
     private apiServices: ApiService,
     private router: Router,
@@ -30,8 +28,8 @@ export class ListComponent implements OnInit {
         index = key;
       }
     });
-  this.apiServices.deletePoll(id).subscribe(res => {
-  this.list.splice(index, 1);
+    this.apiServices.deletePoll(id).subscribe(res => {
+      this.list.splice(index, 1);
     });
   }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { reject, resolve } from "q";
 @Injectable()
 export class ApiService {
   token: any;
@@ -24,10 +23,10 @@ export class ApiService {
           if (data["error"] && data["error"] === 1) {
             reject(data);
           } else {
-            resolve(data);
             this.token = data["data"].api_token;
             localStorage.setItem("role", data["data"].role);
             localStorage.setItem("token", this.token);
+            resolve(data); 
           }
         });
     });
@@ -100,9 +99,7 @@ export class ApiService {
     const apidata = {
       title: post.title
     };
-    console.log(apidata);
-
-    return this.http.put(
+   return this.http.put(
       `${environment["apiBase"]}update_poll_title/${id}`,
       apidata,
       this.httpOptions
@@ -113,5 +110,11 @@ export class ApiService {
       `${environment["apiBase"]}delete_poll/${id}`,
       this.httpOptions
     );
+  }
+  addOption(id, post) {
+    const apidata = {
+      option: post.option
+    };
+    return this.http.post(`${environment["apiBase"]}add_poll_option/${id}`, apidata, this.httpOptions);
   }
 }

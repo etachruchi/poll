@@ -9,7 +9,7 @@ import { ApiService } from "../../services/apiservice";
 })
 export class ViewpollComponent implements OnInit {
   pollview: any;
-  id: any;
+  id: string;
   titleEdit: any;
   loading: boolean;
   errorMessage: String;
