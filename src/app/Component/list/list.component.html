@@ -14,13 +14,17 @@
                         <h3 class="Title">{{poll.title}}</h3>
                         <div>
                             <ul class="list-unstyled">
-                                <li *ngFor="let Polls of poll.options">{{Polls.options}}
-                                    <span class="float-right">{{Polls.vote}}</span>
+                                <li *ngFor="let Polls of poll.options">
+                                    {{Polls.options}}
+                                    <span class=" float-right ">
+                                        <input type="radio" name="vote" value="true" ng-disabled="true" (click)="doVote(poll.id,Polls.opt_id)"> {{Polls.vote}}&nbsp;
+                                        <i class="fa fa-trash " aria-hidden="true " (click)=" deleteOption(poll.id, Polls.opt_id) "></i>
+                                    </span>
                                 </li>
                             </ul>
-                            <button class="btn btn-info" routerLink="/viewpoll/{{poll.id}}">Edit</button>
-                            <button class="btn btn-danger" (click)="deletePoll(poll.id)">delete</button>
-                            <button class="btn btn-success" routerLink="/addpoll/{{poll.id}}">Add Option</button>
+                            <button class="btn btn-info " routerLink="/viewpoll/{{poll.id}} ">Edit</button>
+                            <button class="btn btn-danger " (click)="deletePoll(poll.id) ">delete</button>
+                            <button class="btn btn-success " routerLink="/addoption/{{poll.id}} ">Add Option</button>
                         </div>
 
                     </div>
@@ -29,6 +33,6 @@
         </div>
     </div>
 </div>
-<div *ngIf="!(list && list.length)" class="loader">
+<div *ngIf="!(list && list.length) " class="loader ">
 </div>
 <app-sidemenu></app-sidemenu>

@@ -1,27 +1,26 @@
 <div class="container">
     <div>
-        <h4>Add-poll</h4>
+        <h4>Add-poll-Option</h4>
     </div>
     <div class="pollform">
-        <form class="form-horizontal" [formGroup]="titleEdit" (ngSubmit)="onSubmit(titleEdit)">
-            <span class="subname"> Title</span>
-            <input type="text" class="form-control" placeholder="Title" formControlName="title">
-            <div *ngIf="titleEdit.controls['title'].errors && !titleEdit.controls['title'].pristine" class="alert alert-danger">
-                <div *ngIf="titleEdit.controls['title'].errors.required">
+        <form class="form-horizontal" [formGroup]="addOption" (ngSubmit)="onSubmit(addOption)">
+            <span class="option"> Poll-Option</span>
+            <input type="text" class="form-control" placeholder="Option" formControlName="Option">
+            <div *ngIf="addOption.controls['Option'].errors && !addOption.controls['Option'].pristine" class="alert alert-danger">
+                <div *ngIf="addOption.controls['Option'].errors.required">
                     Name is required.
                 </div>
-                <div *ngIf="titleEdit.controls['title'].errors.pattern">
-                    invalid Username
-                </div>
-                <div *ngIf="titleEdit.controls['title'].errors.minlength">
+
+                <div *ngIf="addOption.controls['Option'].errors.minlength">
                     atleast 2 character required.
                 </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-success btn-block" [disabled]="(!titleEdit.valid || loading) ">Update
+            <button type="submit" class="btn btn-success btn-block" [disabled]="(!addOption.valid || loading) ">Update
         <div *ngIf="loading" class="loader"></div>
       </button>
         </form>
     </div>
 </div>
+
 <app-sidemenu></app-sidemenu>

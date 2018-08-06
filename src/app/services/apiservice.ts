@@ -11,6 +11,7 @@ export class ApiService {
       api_token: localStorage.getItem("token")
     })
   };
+
   constructor(private http: HttpClient) {}
 
   postlogin(post) {
@@ -24,9 +25,14 @@ export class ApiService {
             reject(data);
           } else {
             this.token = data["data"].api_token;
-            localStorage.setItem("role", data["data"].role);
             localStorage.setItem("token", this.token);
-            resolve(data); 
+            this.httpOptions = {
+              headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                api_token: localStorage.getItem("token")
+              })
+            };
+            resolve(data);
           }
         });
     });
@@ -74,32 +80,16 @@ export class ApiService {
   }
 
   listpolls() {
-    this.role = localStorage.getItem("role").toLowerCase();
-    if (this.role == "admin") {
-      return this.http.get(
-        `${environment["apiBase"]}list_polls`,
-        this.httpOptions
-      );
-    } else {
-      return this.http.get(
-        `${environment["apiBase"]}list_poll`,
-        this.httpOptions
-      );
-    }
-  }
-  listpoll() {
-    this.role = localStorage.getItem("role").toLowerCase();
     return this.http.get(
-      `${environment["apiBase"]}list_poll`,
+      `${environment["apiBase"]}list_polls`,
       this.httpOptions
     );
   }
-
   editpolltitle(id, post) {
     const apidata = {
       title: post.title
     };
-   return this.http.put(
+    return this.http.put(
       `${environment["apiBase"]}update_poll_title/${id}`,
       apidata,
       this.httpOptions
@@ -112,9 +102,19 @@ export class ApiService {
     );
   }
   addOption(id, post) {
-    const apidata = {
-      option: post.option
-    };
-    return this.http.post(`${environment["apiBase"]}add_poll_option/${id}`, apidata, this.httpOptions);
+    const apidata = { option: post.Option };
+    return this.http.post(
+      `${environment["apiBase"]}add_poll_option/${id}`,
+      apidata,
+      this.httpOptions
+    );
+  }
+  deleteOption(id, opt_id) {
+    return this.http.delete(`${environment["apiBase"]}delete_poll_option/${id}/${opt_id}`, this.httpOptions);
+
+  }
+  vote(id, opt_id) {
+    return this.http.put(`${environment["apiBase"]}vote/${id}/${opt_id}`, this.httpOptions);
+
   }
 }

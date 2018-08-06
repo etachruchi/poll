@@ -33,7 +33,7 @@ button {
 }
 
 h3 {
-    margin-left: 40%;
+    text-align: center;
 }
 
 .loader {
@@ -47,4 +47,12 @@ h3 {
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
+}
+
+.delete-option {
+    float: right;
+}
+
+i {
+    color: red;
 }
