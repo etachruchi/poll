@@ -14,7 +14,7 @@
                     <div class="pollallcard">
                         <div class="row">
                             <div class="card" *ngFor="let poll of list" style="width: 18rem;">
-                                <app-vote-poll (deletePoll)='deletePoll($event)' (updatePoll)='updatePoll($event)' [parentData]="poll"></app-vote-poll>
+                                <app-vote-poll (deletePoll)='deletePoll($event)' (updatePoll)='updatePoll($event)' [pollData]="poll"></app-vote-poll>
                                 <div class="card-body">
                                 </div>
                             </div>
