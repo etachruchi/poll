@@ -13,14 +13,14 @@ import { SidemenuComponent } from './Component/sidemenu/sidemenu.component';
 import { AddpollComponent } from './Component/addpoll/addpoll.component';
 import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from './Component/viewpoll/viewpoll.component';
-import { VotepollComponent } from './Component/votepoll/votepoll.component';
 import { AddOptionComponent } from './Component/add-option/add-option.component';
+import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, ViewpollComponent, VotepollComponent, AddOptionComponent, 
+    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, ViewpollComponent, AddOptionComponent, VotePollComponent, 
   
 
   ],

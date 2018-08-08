@@ -21,7 +21,7 @@
                                 atleast 8 character required.
                             </div>
                         </div>
-                        <span class="subname"> password</span>
+                        <span class="subname"> Password</span>
                         <input type="password" class="form-control" placeholder="password" formControlName="password" required>
                         <div *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine" class="alert alert-danger">
                             <div *ngIf="loginForm.controls['password'].errors.required">
