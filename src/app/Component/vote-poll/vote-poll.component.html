@@ -1,3 +1,23 @@
-<p>
-    vote-poll works!
-</p>
+<div class="card-body">
+    <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <h3 class="Title">{{parentData.title}}</h3>
+        <div>
+            <ul class="list-unstyled">
+                <li *ngFor="let Polls of parentData.options">
+                    {{Polls.options}}
+                    <span class=" float-right ">
+                       <input type="radio" value="{{Polls.opt_id}}" name="poll" [(ngModel)]="selectedPoll"> {{Polls.vote}}
+                        <i class="fa fa-trash " aria-hidden="true " (click)=" deleteOption(parentData.id, Polls.opt_id) "></i>
+                  </span>
+                </li>
+            </ul>
+            <div class="text-center">
+                <button class="btn btn-info mx-auto " [disabled]="!selectedPoll">submit</button>
+            </div>
+            <br>
+            <button class="btn btn-info " routerLink="/viewpoll/{{parentData.id}} ">Edit</button>
+            <button class="btn btn-danger " (click)="deletePollfun()">delete</button>
+            <button class="btn btn-success " routerLink="/addoption/{{parentData.id}} ">Add Option</button>
+        </div>
+    </form>
+</div>

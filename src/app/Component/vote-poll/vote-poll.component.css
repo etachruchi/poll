@@ -1,0 +1,15 @@
+button {
+    margin-right: 5px;
+}
+
+h3 {
+    text-align: center;
+}
+
+.delete-option {
+    float: right;
+}
+
+i {
+    color: red;
+}
