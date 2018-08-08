@@ -26,8 +26,8 @@ h4 {
 }
 
 .loader {
-    margin-left: 161px;
-    margin-top: -27px;
+    float: right;
+    margin-top: -3px;
     border: 6px solid #f3f3f3;
     border-radius: 50%;
     border-top: 6px solid #3498db;

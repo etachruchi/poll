@@ -33,7 +33,7 @@
                         atleast 8 character required.
                     </div>
                 </div>
-                <span class="subname"> password</span>
+                <span class="subname"> Password</span>
                 <input type="password" class="form-control" placeholder="password" formControlName="password">
                 <div *ngIf="SignupForm.controls['password'].errors && !SignupForm.controls['password'].pristine" class="alert alert-danger">
                     <div *ngIf="SignupForm.controls['password'].errors.required">
@@ -43,10 +43,10 @@
                         atleast 4 character required.
                     </div>
                     <div *ngIf="SignupForm.controls['password'].errors.pattern">
-                        pattern should be one letter ,one number and one special character.
+                        pattern should be one smallletter,one capitalletter ,one number and one special character.
                     </div>
                 </div>
-                <span class="subname"> confirm password</span>
+                <span class="subname"> Confirm password</span>
                 <input type="password" class="form-control" placeholder=" confirm password" formControlName="conpassword">
                 <div *ngIf="SignupForm.controls['conpassword'].errors && !SignupForm.controls['conpassword'].pristine" class="alert alert-danger">
                     <div *ngIf="SignupForm.controls['conpassword'].errors.required">
@@ -58,13 +58,12 @@
                 </div>
                 <div class="selector">
                     <select class="selectpicker" formControlName="Role">
-            <option>None</option>
-            <option>Admin</option>
-            <option>Guest</option>
-          </select>
+                        <option>None</option>
+                        <option>Admin</option>
+                        <option>Guest</option>
+                    </select>
                 </div>
                 <br>
-                <i class="fa fa-circle-o-notch"></i>
                 <div class="error">
                     <p *ngIf="errorMessage">{{errorMessage}}</p>
                 </div>
@@ -75,7 +74,7 @@
         </form>
 
     </div>
-    <p>Have allready accopunt
+    <p>Have already account
         <a routerLink="/login">Login</a> here.
     </p>
 

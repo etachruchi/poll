@@ -32,18 +32,22 @@ button {
     float: right;
 }
 
+.heading {
+    margin-right: -26px;
+}
+
 h3 {
     margin-left: 40%;
 }
 
 .loader {
-    margin-left: 47%;
-    margin-top: 196px;
+    float: right;
+    margin-top: -3px;
     border: 6px solid #f3f3f3;
-    border-radius: 91%;
+    border-radius: 50%;
     border-top: 6px solid #3498db;
-    width: 179px;
-    height: 173px;
+    width: 32px;
+    height: 33px;
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;

@@ -1,16 +1,23 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter  } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../services/apiservice";
+import * as _ from "lodash"; 
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
+  @Input() inputEmitter = new EventEmitter();
   list: any;
   id: number;
   opt_id: string;
-vote:number;
+  errorMessage: String;
+  vote: number;
+  Polls;
+  submitted: boolean;
+  pollId:any;
+  pollsArray: Array<any>;
   constructor(
     private apiServices: ApiService,
     private router: Router,
@@ -53,8 +60,35 @@ vote:number;
   }
 
   doVote(id, opt_id) {
-    this.apiServices.vote(id, opt_id).subscribe(res => {
+  this.apiServices.vote(id, opt_id).subscribe(res => {
+    this.getPolls();
+   });
+  }
+  // onSubmit(id, opt_id) {
+  //   this.apiServices.vote(id, opt_id).subscribe(res => {
+  //     this.getPolls();
+  //   });
+  // }
+  onSubmit(poll) {
+    if (_.indexOf(this.pollsArray, poll.id) == -1) {
+      this.pollsArray.push(poll.id);
+    }
+    this.apiServices.vote(poll.id, this.pollId).subscribe(res => {
       this.getPolls();
-     });
+    });
+    localStorage.setItem("poll", JSON.stringify(this.pollsArray));
+  }
+
+  setOptionId(opt_id) {
+    this.pollId = opt_id;
+  }
+  isDisabled(id) {
+    if (_.indexOf(this.pollsArray, id) != -1) {
+      this.submitted = true;
+      return true;
+    } else {
+      this.submitted = false;
+      return false;
+    }
   }
 }

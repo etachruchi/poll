@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ApiService } from "../../services/apiservice";
@@ -35,10 +35,9 @@ export class AddOptionComponent implements OnInit {
     this.loading = true;
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.apiServices.addOption(this.id, formData.value).subscribe(res => {
-      this.loading = false;
-      this.router.navigate(["/list"]);
-      this.addOption.reset();
+    this.loading = false;
+    this.router.navigate(["/list"]);
+    this.addOption.reset();
     });
   }
-  
 }
