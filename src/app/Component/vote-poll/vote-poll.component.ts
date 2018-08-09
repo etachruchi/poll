@@ -36,7 +36,7 @@ export class VotePollComponent implements OnInit {
   deletePoll(id) {
     this.deletePollEmitt.emit(this.pollData.id);
   }
-  updatePollfunction(id) {
+  updatePoll(id) {
     this.updatePollEmitt.emit(this.pollData.id);
   }
   onSubmitvote(opt_id) {

@@ -39,7 +39,7 @@ export class ListComponent implements OnInit {
       this.list.splice(index, 1);
     });
   }
-  updatePollEmitt(id){
+  updatePoll(id){
       this.getPolls();
     }
 }
