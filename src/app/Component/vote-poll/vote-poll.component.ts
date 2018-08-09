@@ -33,13 +33,13 @@ export class VotePollComponent implements OnInit {
     this.pollData.options.splice(index, 1)
     });
   }
-  deletePollfun(id) {
+  deletePollfunction(id) {
     this.deletePoll.emit(this.pollData.id);
   }
   updatePollfunction(id) {
     this.updatePoll.emit(this.pollData.id);
   }
-  onSubmit(opt_id) {
+  onSubmitvote(opt_id) {
     this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(res => {
       this.updatePoll.emit(res["data"]);
     });

@@ -12,12 +12,12 @@
                 </li>
             </ul>
             <div class="text-center">
-                <button class="btn btn-info mx-auto " [disabled]="!selectedPoll">submit</button>
+                <button type="submit" class="btn btn-info mx-auto " [disabled]="!selectedPoll">submit</button>
             </div>
             <br>
             <div class="pollButton">
                 <button type="button" class="btn btn-info " routerLink="/viewpoll/{{pollData.id}} ">Edit</button>
-                <button type="button" class="btn btn-danger " (click)="deletePollfun(id)">delete</button>
+                <button type="button" class="btn btn-danger " (click)=" deletePollfunction(id)">delete</button>
                 <button type="button" class="btn btn-success " routerLink="/addoption/{{pollData.id}} ">Add Option</button>
             </div>
         </div>

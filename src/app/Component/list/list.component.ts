@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
 
   getPolls() {
     this.apiServices.listpolls().subscribe(res => {
-      this.list = res["data"];
+      this.list = res["data"].reverse();
     });
   }
 
@@ -39,7 +39,7 @@ export class ListComponent implements OnInit {
       this.list.splice(index, 1);
     });
   }
-        updatePoll(id){
+  updatePoll(id){
       this.getPolls();
-      }
+    }
 }
