@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ApiService } from "../../services/apiservice";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import * as _ from "lodash";
 @Component({
   selector: "app-vote-poll",
   templateUrl: "./vote-poll.component.html",
@@ -14,7 +15,6 @@ export class VotePollComponent implements OnInit {
   id: number;
   opt_id: string;
   Pollid: string;
-  pollsArray: Array<any> = [];
   selectedPoll = false;
   constructor(
     private apiServices: ApiService,

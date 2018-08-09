@@ -8,8 +8,7 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./add-option.component.css"]
 })
 export class AddOptionComponent implements OnInit {
-  addOption: any;
-  pollview: any;
+  addOption: FormGroup;
   id: string;
   loading: boolean;
   errorMessage: String;
@@ -35,9 +34,9 @@ export class AddOptionComponent implements OnInit {
     this.loading = true;
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.apiServices.addOption(this.id, formData.value).subscribe(res => {
-    this.loading = false;
-    this.router.navigate(["/list"]);
-    this.addOption.reset();
+      this.loading = false;
+      this.router.navigate(["/list"]);
+      this.addOption.reset();
     });
   }
 }

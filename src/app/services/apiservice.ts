@@ -3,8 +3,8 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 @Injectable()
 export class ApiService {
-  token: any;
-  role: any;
+  token: string;
+  role: string;
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",

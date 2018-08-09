@@ -27,7 +27,8 @@ import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
     ListComponent,
     ViewpollComponent,
     AddOptionComponent,
-    VotePollComponent
+    VotePollComponent,
+  
   ],
   imports: [
     BrowserModule,

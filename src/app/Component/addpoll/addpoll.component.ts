@@ -9,7 +9,7 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./addpoll.component.css"]
 })
 export class AddpollComponent implements OnInit {
-  addpollForm: any;
+  addpollForm: FormGroup;
   errorMessage: String;
   loading: boolean;
   constructor(public apiServices: ApiService, private router: Router) {}
@@ -49,9 +49,8 @@ export class AddpollComponent implements OnInit {
       if (res && res["error"]) {
         this.errorMessage = res["data"];
       } else {
-       this.router.navigate(["/list"]);
+        this.router.navigate(["/list"]);
       }
     });
   }
-  
 }
