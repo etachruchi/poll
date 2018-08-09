@@ -1,4 +1,6 @@
 export interface list{
+    error:number;
+    data:Array<{
     id:number;
     title:string;
      options: Array<{
@@ -6,4 +8,5 @@ export interface list{
          option:string;
          vote:number;
      }>
+    }>
 }

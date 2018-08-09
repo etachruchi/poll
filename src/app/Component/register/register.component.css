@@ -28,8 +28,7 @@
     margin: auto 0;
 }
 
-.login,
-p {
+.login>p {
     color: white;
 }
 

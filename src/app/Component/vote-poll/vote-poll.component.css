@@ -1,5 +1,4 @@
-.pollButton,
-button {
+.pollButton>button {
     margin-right: 4px;
 }
 
@@ -11,7 +10,6 @@ button {
     float: right;
 }
 
-.Pollvote,
-i {
+.Pollvote>i {
     color: red;
 }

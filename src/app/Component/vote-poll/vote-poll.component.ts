@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ApiService } from "../../services/apiservice";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import * as _ from "lodash";
 @Component({
   selector: "app-vote-poll",
   templateUrl: "./vote-poll.component.html",
@@ -23,8 +22,16 @@ export class VotePollComponent implements OnInit {
   ngOnInit() {}
 
   deleteOption(id, opt_id) {
-    _.remove(this.pollData.options, { opt_id: opt_id });
-    this.apiServices.deleteOption(id, opt_id).subscribe(res => {});
+
+    let index = -1;
+    this.pollData.options.forEach((value, key) => {
+      if (value['id'] == id) {
+        index = key;
+      }
+    });
+    this.apiServices.deleteOption(id, opt_id).subscribe(res => { 
+    this.pollData.options.splice(index, 1)
+    });
   }
   deletePollfun(id) {
     this.deletePoll.emit(this.pollData.id);

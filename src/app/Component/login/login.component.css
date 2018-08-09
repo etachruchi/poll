@@ -28,8 +28,7 @@
     margin: auto 0;
 }
 
-.alreadyaccount,
-p {
+.alreadyaccount>p {
     color: white;
 }
 

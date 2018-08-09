@@ -8,8 +8,7 @@
     margin-left: -24px;
 }
 
-.heading,
-h4 {
+.heading>h4 {
     text-align: center;
     background-color: #337ab7;
     height: 20%;
