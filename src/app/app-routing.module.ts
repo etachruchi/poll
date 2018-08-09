@@ -7,6 +7,7 @@ import { AddpollComponent } from './Component/addpoll/addpoll.component';
 import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from "./Component/viewpoll/viewpoll.component";
 import { AddOptionComponent } from "./Component/add-option/add-option.component";
+
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent },

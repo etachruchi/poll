@@ -1,0 +1,15 @@
+.pollButton>button {
+    margin-right: 4px;
+}
+
+.title {
+    text-align: center;
+}
+
+.delete-option {
+    float: right;
+}
+
+.Pollvote>i {
+    color: red;
+}

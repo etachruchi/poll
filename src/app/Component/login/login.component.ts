@@ -9,9 +9,9 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  loginForm: any;
+  loginForm: FormGroup;
   errorMessage: String;
-  loading:boolean;
+  loading: boolean;
   constructor(public apiServices: ApiService, private router: Router) {}
 
   ngOnInit() {
@@ -45,8 +45,7 @@ export class LoginComponent implements OnInit {
       })
       .catch(err => {
         this.loading = false;
-        this.errorMessage = err.data;
+        this.errorMessage = err.message;
       });
-  
   }
 }

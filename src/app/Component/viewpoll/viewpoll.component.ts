@@ -8,7 +8,6 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./viewpoll.component.css"]
 })
 export class ViewpollComponent implements OnInit {
-  pollview: any;
   id: string;
   titleEdit: any;
   loading: boolean;

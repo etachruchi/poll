@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './Component/login/login.component';
 import { RegisterComponent } from './Component/register/register.component';
@@ -20,18 +20,25 @@ import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,RegisterComponent, SidemenuComponent, AddpollComponent, ListComponent, ViewpollComponent, AddOptionComponent, VotePollComponent, 
+    LoginComponent,
+    RegisterComponent,
+    SidemenuComponent,
+    AddpollComponent,
+    ListComponent,
+    ViewpollComponent,
+    AddOptionComponent,
+    VotePollComponent,
   
-
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
