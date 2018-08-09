@@ -7,8 +7,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./vote-poll.component.css"]
 })
 export class VotePollComponent implements OnInit {
-  @Output() updatePoll = new EventEmitter();
-  @Output() deletePoll = new EventEmitter();
+  @Output() updatePollEmitt = new EventEmitter();
+  @Output() deletePollEmitt = new EventEmitter();
   submitted: boolean;
   @Input() pollData;
   id: number;
@@ -33,15 +33,15 @@ export class VotePollComponent implements OnInit {
     this.pollData.options.splice(index, 1)
     });
   }
-  deletePollfunction(id) {
-    this.deletePoll.emit(this.pollData.id);
+  deletePoll(id) {
+    this.deletePollEmitt.emit(this.pollData.id);
   }
   updatePollfunction(id) {
-    this.updatePoll.emit(this.pollData.id);
+    this.updatePollEmitt.emit(this.pollData.id);
   }
   onSubmitvote(opt_id) {
     this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(res => {
-      this.updatePoll.emit(res["data"]);
+      this.updatePollEmitt.emit(res["data"]);
     });
   }
 }
