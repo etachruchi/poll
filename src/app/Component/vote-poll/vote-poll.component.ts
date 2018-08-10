@@ -19,6 +19,7 @@ export class VotePollComponent implements OnInit {
   selectedPoll = false;
   loader: boolean;
   errorMessage: string;
+  submitted:boolean;
   pollArray: Array<number> = [];
 
   constructor(private apiServices: ApiService) {}
@@ -48,10 +49,10 @@ export class VotePollComponent implements OnInit {
       }
     );
   }
-  deletePoll(id) {
+  deletePoll() {
     this.deletePollEmitt.emit(this.pollData.id);
   }
-  updatePoll(id) {
+  updatePoll() {
     this.updatePollEmitt.emit(this.pollData.id);
   }
   onSubmitvote(opt_id) {
@@ -73,8 +74,10 @@ export class VotePollComponent implements OnInit {
   }
   isDisabled(id) {
     if (this.pollArray.indexOf(id) != -1) {
+      this.submitted=true;
       return true;
     } else {
+      this.submitted=false;
       return false;
     }
   }

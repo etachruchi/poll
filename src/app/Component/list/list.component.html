@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     <div class="pollallcard">
                         <div class="row">
-                            <div *ngFor="let poll of list" class="col-md-4" style="padding: 0">
+                            <div *ngFor="let poll of list" class="Poll col-md-4">
                                 <app-vote-poll (deletePollEmitt)='deletePoll($event)' (updatePollEmitt)='updatePoll($event)' [pollData]="poll"></app-vote-poll>
                             </div>
                         </div>

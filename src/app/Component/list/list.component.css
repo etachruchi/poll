@@ -43,3 +43,11 @@
     /* Safari */
     animation: spin 2s linear infinite;
 }
+
+.card {
+    width: 18rem;
+}
+
+.Poll {
+    padding: 0
+}

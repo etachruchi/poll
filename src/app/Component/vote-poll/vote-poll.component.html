@@ -10,7 +10,7 @@
                             <li *ngFor="let Polls of pollData.options">
                                 {{Polls.options}}
                                 <span class="Pollvote float-right ">
-                                    <input type="radio" value="{{Polls.opt_id}}" name="poll" [(ngModel)]="selectedPoll" [attr.disabled]="isDisabled(pollData.id) ? true : null"> {{Polls.vote}}
+                                    <input type="radio" value="{{Polls.opt_id}}" name="poll" [(ngModel)]="selectedPoll" *ngIf= "!submitted"> {{Polls.vote}}
                                     <i class="fa fa-trash " aria-hidden="true " (click)=" deleteOption(pollData.id, Polls.opt_id) "></i>
                                     <div *ngIf="opt_id==Polls.opt_id" class="loader"></div>
                                     <div class="error">
@@ -26,13 +26,12 @@
                     <div class="text-center">
 
                         <button *ngIf="!isDisabled(pollData.id)" type="submit" class="btn btn-info mx-auto " [disabled]="!selectedPoll">Vote</button>
-
-                        <p *ngIf="isDisabled(pollData.id)">Vote SuccessFully Submitted</p>
+                        <p *ngIf="submitted">Vote SuccessFully Submitted</p>
                     </div>
                     <br>
                     <div>
                         <button type="button" class="btn btn-info " routerLink="/viewpoll/{{pollData.id}} ">Edit</button>
-                        <button type="button" class="btn btn-danger mx-2" (click)=" deletePoll(id)">delete</button>
+                        <button type="button" class="btn btn-danger mx-2" (click)=" deletePoll()">delete</button>
                         <button type="button" class="btn btn-success " routerLink="/addoption/{{pollData.id}} ">Add Option</button>
                     </div>
 

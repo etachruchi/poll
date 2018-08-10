@@ -9,7 +9,7 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./addpoll.component.css"]
 })
 export class AddpollComponent implements OnInit {
-  addpollForm: any;
+  addpollForm: FormGroup;
   errorMessage: String;
   loading: boolean;
   option: FormArray;

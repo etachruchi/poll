@@ -39,10 +39,11 @@ export class AddOptionComponent implements OnInit {
     this.option = this.addOption.get("option") as FormArray;
     this.option.push(this.createOption());
   }
-  removeinput(index: number): void {
-    if (this.option && this.option.length > 1) {
+  removeinput(index: -1): void {
+     if (this.option && this.option.length > 1) {
       this.option = this.addOption.get("option") as FormArray;
       this.option.removeAt(index);
+     
     }
   }
   onSubmit(formData) {
