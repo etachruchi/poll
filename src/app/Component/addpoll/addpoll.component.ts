@@ -43,7 +43,7 @@ export class AddpollComponent implements OnInit {
     this.option = this.addpollForm.get("option") as FormArray;
     this.option.push(this.createOption());
   }
-  removeinput(index: number): void {
+  removeInput(index: number): void {
     if (this.option && this.option.length > 1) {
       this.option = this.addpollForm.get("option") as FormArray;
       this.option.removeAt(index);
