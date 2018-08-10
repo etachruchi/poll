@@ -59,12 +59,8 @@ export class ApiService {
   addpoll(post) {
     const apidata = {
       title: post.title,
-      options: [
-        { option: post.option1 },
-        { option: post.option2 },
-        { option: post.option3 },
-        { option: post.option4 }
-      ]
+      options:post.option
+      
     };
     return new Promise((resolve, reject) => {
       this.http
@@ -102,7 +98,7 @@ export class ApiService {
     );
   }
   addOption(id, post) {
-    const apidata = { option: post.Option };
+    const apidata = { options: post.option }
     return this.http.post(
       `${environment["apiBase"]}add_poll_option/${id}`,
       apidata,

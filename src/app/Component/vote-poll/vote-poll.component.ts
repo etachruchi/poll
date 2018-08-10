@@ -7,41 +7,77 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./vote-poll.component.css"]
 })
 export class VotePollComponent implements OnInit {
-  @Output() updatePollEmitt = new EventEmitter();
-  @Output() deletePollEmitt = new EventEmitter();
-  submitted: boolean;
-  @Input() pollData;
+  @Output()
+  updatePollEmitt = new EventEmitter();
+  @Output()
+  deletePollEmitt = new EventEmitter();
+  @Input()
+  pollData;
   id: number;
-  opt_id: string;
-  Pollid: string;
+  opt_Id: number;
   selectedPoll = false;
-  constructor(
-    private apiServices: ApiService,
-  ) {}
+  loader: boolean;
+  errorMessage: string;
+  submitted:boolean;
+  pollArray: Array<number> = [];
 
-  ngOnInit() {}
+  constructor(private apiServices: ApiService) {}
 
-  deleteOption(id, opt_id) {
+  ngOnInit() {
+    if (JSON.parse(localStorage.getItem("poll"))) {
+      this.pollArray = JSON.parse(localStorage.getItem("poll"));
+    }
+  }
 
+  deleteOption(id, opt_Id) {
     let index = -1;
     this.pollData.options.forEach((value, key) => {
-      if (value['id'] == id) {
+      if (value["id"] == id) {
         index = key;
       }
     });
-    this.apiServices.deleteOption(id, opt_id).subscribe(res => { 
-    this.pollData.options.splice(index, 1)
-    });
+    this.opt_Id = opt_Id;
+    this.apiServices.deleteOption(id, opt_Id).subscribe(
+      res => {
+        this.pollData.options.splice(index, 1);
+        this.opt_Id = null;
+      },
+      err => {
+        this.errorMessage = err.data;
+        this.opt_Id = null;
+      }
+    );
   }
-  deletePoll(id) {
+  deletePoll() {
     this.deletePollEmitt.emit(this.pollData.id);
   }
-  updatePoll(id) {
+  updatePoll() {
     this.updatePollEmitt.emit(this.pollData.id);
   }
-  onSubmitvote(opt_id) {
-    this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(res => {
-      this.updatePollEmitt.emit(res["data"]);
-    });
+  onSubmitvote(opt_Id) {
+    this.loader = true;
+    this.apiServices.vote(this.pollData.id, opt_Id.poll).subscribe(
+      res => {
+        this.loader = false;
+        if (this.pollArray.indexOf(this.pollData.id) == -1) {
+          this.pollArray.push(this.pollData.id);
+          localStorage.setItem("poll", JSON.stringify(this.pollArray));
+        }
+        this.updatePollEmitt.emit(res["data"]);
+      },
+      err => {
+        this.errorMessage = err.data;
+        this.loader = false;
+      }
+    );
+  }
+  isDisabled(id) {
+    if (this.pollArray.indexOf(id) != -1) {
+      this.submitted=true;
+      return true;
+    } else {
+      this.submitted=false;
+      return false;
+    }
   }
 }

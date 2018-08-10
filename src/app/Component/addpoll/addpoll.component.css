@@ -38,3 +38,8 @@ h4 {
     /* Safari */
     animation: spin 2s linear infinite;
 }
+
+.button>button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
