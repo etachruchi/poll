@@ -1,9 +1,14 @@
-.pollButton>button {
-    margin-right: 4px;
+.pollButton {
+    position: absolute;
+    bottom: 20px;
 }
 
 .title {
     text-align: center;
+}
+
+.a {
+    min-height: 230px;
 }
 
 .delete-option {
@@ -12,4 +17,40 @@
 
 .Pollvote>i {
     color: red;
+    cursor: pointer;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card {
+    height: 100%;
+}
+
+.footerbutton,
+p {
+    color: red;
+    margin-bottom: 0;
+    /* position: fixed; */
+}
+
+.clear-fix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.loader {
+    margin-left: 215px;
+    margin-top: -34px;
+    float: right;
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 32px;
+    height: 33px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
 }

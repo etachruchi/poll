@@ -9,41 +9,46 @@ import { ApiService } from "../../services/apiservice";
   styleUrls: ["./addpoll.component.css"]
 })
 export class AddpollComponent implements OnInit {
-  addpollForm: FormGroup;
+  addpollForm: any;
   errorMessage: String;
   loading: boolean;
-  constructor(public apiServices: ApiService, private router: Router) {}
+  option: FormArray;
+  constructor(
+    public apiServices: ApiService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.addPollForm();
-  }
-  addPollForm() {
-    this.addpollForm = new FormGroup({
+    this.addpollForm = this.formBuilder.group({
       title: new FormControl("", [
         Validators.required,
         Validators.minLength(4)
       ]),
-      option1: new FormControl("", [
+      option: this.formBuilder.array([this.createOption()])
+    });
+  }
+  createOption(): FormGroup {
+    return this.formBuilder.group({
+      option: new FormControl("", [
         Validators.required,
-        Validators.minLength(2)
-      ]),
-      option2: new FormControl("", [
-        Validators.required,
-        Validators.minLength(2)
-      ]),
-      option3: new FormControl("", [
-        Validators.required,
-        Validators.minLength(2)
-      ]),
-      option4: new FormControl("", [
-        Validators.required,
-        Validators.minLength(2)
+        Validators.minLength(4)
       ])
     });
   }
-
+  addItem(): void {
+    this.option = this.addpollForm.get("option") as FormArray;
+    this.option.push(this.createOption());
+  }
+  removeinput(index:number): void{
+    if (this.option && this.option.length>1){
+  this.option = this.addpollForm.get("option") as FormArray;
+  this.option.removeAt(index);
+  }
+  }
   onSubmit(formData) {
     this.loading = true;
+    console.log(formData.value);
     this.apiServices.addpoll(formData.value).then(res => {
       this.loading = false;
       if (res && res["error"]) {

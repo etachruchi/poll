@@ -5,64 +5,39 @@
     <div class="pollform">
         <form class="form-horizontal" [formGroup]="addpollForm" (ngSubmit)="onSubmit(addpollForm)">
             <div class="form-group">
-                <span class="polltitle"> Title</span>
+                <span class="polltitle">Title</span>
                 <input type="text" class="form-control" placeholder="Title" formControlName="title">
                 <div *ngIf="addpollForm.controls['title'].errors && !addpollForm.controls['title'].pristine" class="alert alert-danger">
                     <div *ngIf="addpollForm.controls['title'].errors.required">
                         Titile is required.
                     </div>
-
                     <div *ngIf="addpollForm.controls['title'].errors.minlength">
                         atleast 4 character required.
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <span class="polltitle"> Option:-1</span>
-                <input type="text" class="form-control" placeholder="option1" formControlName="option1">
-                <div *ngIf="addpollForm.controls['option1'].errors && !addpollForm.controls['option1'].pristine" class="alert alert-danger">
-                    <div *ngIf="addpollForm.controls['option1'].errors.required">
-                        option is required.
-                    </div>
-                    <div *ngIf="addpollForm.controls['option1'].errors.minlength">
-                        atleast 2 character required.
-                    </div>
+                <div formArrayName="option" *ngFor="let item of addpollForm.get('option').controls; let i = index;">
+                    <span class="polltitle">Option</span>
+                    <div [formGroupName]="i">
+                        <div class="form-group row">
+                            <div class="input-group mb-3 col-lg-6">
+                                <input type=text formControlName="option" class="form-control" placeholder="Options">
+                                <div class="input-group-prepend bg-white">
+                                    <span class="input-group-text border-left-0 rounded-right bg-white" id="basic-addon1">
+                                    <i class="fa fa-times" aria-hidden="true" (click)="removeinput()"></i>
+                                     </span>
+                                </div>
 
-                </div>
-                <span class="polltitle"> Option:-2</span>
-                <input type="text" class="form-control" placeholder="option2" formControlName="option2">
-                <div *ngIf="addpollForm.controls['option2'].errors && !addpollForm.controls['option2'].pristine" class="alert alert-danger">
-                    <div *ngIf="addpollForm.controls['option2'].errors.required">
-                        option is required.
-                    </div>
-                    <div *ngIf="addpollForm.controls['option2'].errors.minlength">
-                        atleast 2 character required.
-                    </div>
-                </div>
-                <span class="polltitle"> Option:-3</span>
-                <input type="text" class="form-control" placeholder="option3" formControlName="option3">
-                <div *ngIf="addpollForm.controls['option3'].errors && !addpollForm.controls['option3'].pristine" class="alert alert-danger">
-                    <div *ngIf="addpollForm.controls['option3'].errors.required">
-                        option is required.
-                    </div>
-                    <div *ngIf="addpollForm.controls['option3'].errors.minlength">
-                        atleast 2 character required.
-                    </div>
-                </div>
-                <span class="polltitle"> Option:-3</span>
-                <input type="text" class="form-control" placeholder="option4" formControlName="option4">
-                <div *ngIf="addpollForm.controls['option4'].errors && !addpollForm.controls['option4'].pristine" class="alert alert-danger">
-                    <div *ngIf="addpollForm.controls['option4'].errors.required">
-                        option is required.
-                    </div>
-                    <div *ngIf="addpollForm.controls['option4'].errors.minlength">
-                        atleast 2 character required.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
+            <div class="button">
+                <button type="button" class="btn btn-success" (click)="addItem()">Add</button>
+            </div>
             <button type="submit" class="btn btn-success btn-block" [disabled]="!addpollForm.valid || loading">Add
-            <div *ngIf="loading" class="loader"></div>
+
+                <div *ngIf="loading" class="loader"></div>
             </button>
         </form>
     </div>

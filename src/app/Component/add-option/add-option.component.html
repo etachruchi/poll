@@ -9,20 +9,21 @@
             </div>
             <div class="pollform">
                 <form class="form-horizontal" [formGroup]="addOption" (ngSubmit)="onSubmit(addOption)">
-                    <span class="option"> Poll-Option</span>
-                    <input type="text" class="form-control" placeholder="Option" formControlName="Option">
-                    <div *ngIf="addOption.controls['Option'].errors && !addOption.controls['Option'].pristine" class="alert alert-danger">
-                        <div *ngIf="addOption.controls['Option'].errors.required">
-                            Name is required.
-                        </div>
-
-                        <div *ngIf="addOption.controls['Option'].errors.minlength">
-                            atleast 2 character required.
+                    <div formArrayName="option" *ngFor="let item of addOption.get('option').controls; let i = index;">
+                        <span class="option"> Poll-Option</span>
+                        <div [formGroupName]="i">
+                            <span>
+                        <input formControlName="option" class="form-control" placeholder="Options">
+                        <i class="fa fa-times" aria-hidden="true" (click)="removeinput()"></i>
+                       </span>
                         </div>
                     </div>
                     <br>
+                    <div class="button">
+                        <button type="button" class="btn btn-success" (click)="addItem()">Add</button>
+                    </div>
                     <button type="submit" class="btn btn-success btn-block" [disabled]="(!addOption.valid || loading) ">Update
-                    <div *ngIf="loading" class="loader"></div>
+                        <div *ngIf="loading" class="loader"></div>
                     </button>
                 </form>
             </div>

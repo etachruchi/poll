@@ -8,10 +8,11 @@ import { list } from "../model";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  list:Array <list>;
+  list: Array<list>;
   id: number;
   opt_id: string;
   errorMessage: String;
+  loader:boolean;
   constructor(
     private apiServices: ApiService,
     private router: Router,
@@ -24,22 +25,33 @@ export class ListComponent implements OnInit {
 
   getPolls() {
     this.apiServices.listpolls().subscribe(res => {
-      this.list = res["data"].reverse();
+      if (res && res["data"]) {
+        this.list = res["data"].reverse();    
+      }
     });
   }
 
   deletePoll(id) {
     let index = -1;
-    this.list.forEach((value, key) => {
+    this.loader=true;
+        this.list.forEach((value, key) => {
       if (value["id"] == id) {
         index = key;
       }
     });
     this.apiServices.deletePoll(id).subscribe(res => {
+      this.loader=false;
       this.list.splice(index, 1);
+    },(err)=>{
+      this.loader=false;
     });
   }
-  updatePoll(id){
-      this.getPolls();
-    }
+  updatePoll(id) {
+    this.getPolls();
+  }
 }
+// this.apiServices.deletePoll(id).subscribe(res => {
+//   this.list.splice(index, 1);
+// }, (err) => {
+//   this.loader = false;
+// });

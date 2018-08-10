@@ -7,31 +7,46 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./vote-poll.component.css"]
 })
 export class VotePollComponent implements OnInit {
-  @Output() updatePollEmitt = new EventEmitter();
-  @Output() deletePollEmitt = new EventEmitter();
-  submitted: boolean;
-  @Input() pollData;
+  @Output()
+  updatePollEmitt = new EventEmitter();
+  @Output()
+  deletePollEmitt = new EventEmitter();
+  @Input()
+  pollData;
   id: number;
-  opt_id: string;
+  opt_id: number;
   Pollid: string;
   selectedPoll = false;
-  constructor(
-    private apiServices: ApiService,
-  ) {}
+  loader: boolean;
+  errorMessage: string;
+  pollArray: Array<number> = [];
 
-  ngOnInit() {}
+  constructor(private apiServices: ApiService) {}
+
+  ngOnInit() {
+    if (JSON.parse(localStorage.getItem("poll"))) {
+      this.pollArray = JSON.parse(localStorage.getItem("poll"));
+    }
+  }
 
   deleteOption(id, opt_id) {
-
     let index = -1;
     this.pollData.options.forEach((value, key) => {
-      if (value['id'] == id) {
+      if (value["id"] == id) {
         index = key;
       }
     });
-    this.apiServices.deleteOption(id, opt_id).subscribe(res => { 
-    this.pollData.options.splice(index, 1)
-    });
+    this.opt_id = opt_id;
+    this.apiServices.deleteOption(id, opt_id).subscribe(
+      res => {
+        this.pollData.options.splice(index, 1);
+        this.opt_id = null;
+      },
+      err => {
+        this.errorMessage = err.data;
+        this.opt_id = null;
+      }
+    );
   }
   deletePoll(id) {
     this.deletePollEmitt.emit(this.pollData.id);
@@ -40,8 +55,27 @@ export class VotePollComponent implements OnInit {
     this.updatePollEmitt.emit(this.pollData.id);
   }
   onSubmitvote(opt_id) {
-    this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(res => {
-      this.updatePollEmitt.emit(res["data"]);
-    });
+    this.loader = true;
+    this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(
+      res => {
+        this.loader = false;
+        if (this.pollArray.indexOf(this.pollData.id) == -1) {
+          this.pollArray.push(this.pollData.id);
+          localStorage.setItem("poll", JSON.stringify(this.pollArray));
+        }
+        this.updatePollEmitt.emit(res["data"]);
+      },
+      err => {
+        this.errorMessage = err.data;
+        this.loader = false;
+      }
+    );
+  }
+  isDisabled(id) {
+    if (this.pollArray.indexOf(id) != -1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
