@@ -10,7 +10,6 @@ import { list } from "../model";
 export class ListComponent implements OnInit {
   list: Array<list>;
   id: number;
-  opt_id: string;
   errorMessage: String;
   loader:boolean;
   constructor(
@@ -46,12 +45,8 @@ export class ListComponent implements OnInit {
       this.loader=false;
     });
   }
-  updatePoll(id) {
+  updatePoll() {
     this.getPolls();
   }
 }
-// this.apiServices.deletePoll(id).subscribe(res => {
-//   this.list.splice(index, 1);
-// }, (err) => {
-//   this.loader = false;
-// });
+

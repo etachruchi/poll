@@ -1,4 +1,5 @@
 <div class="container">
+    <div *ngIf="loader" class="loaderdel"></div>
     <div class="row">
         <div class="col-sm-3">
             <app-sidemenu></app-sidemenu>
@@ -15,6 +16,7 @@
                         <div class="row">
                             <div *ngFor="let poll of list" class="Poll col-md-4">
                                 <app-vote-poll (deletePollEmitt)='deletePoll($event)' (updatePollEmitt)='updatePoll($event)' [pollData]="poll"></app-vote-poll>
+
                             </div>
                         </div>
                     </div>

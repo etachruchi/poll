@@ -21,6 +21,7 @@
 
 .container {
     width: 100%;
+    position: relative;
 }
 
 .vote {
@@ -37,8 +38,23 @@
     border: 6px solid #f3f3f3;
     border-radius: 91%;
     border-top: 6px solid #3498db;
-    width: 179px;
+    width: 173px;
     height: 173px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.loaderdel {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 20px;
+    height: 20px;
+    z-index: 99;
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;

@@ -14,8 +14,7 @@ export class VotePollComponent implements OnInit {
   @Input()
   pollData;
   id: number;
-  opt_id: number;
-  Pollid: string;
+  opt_Id: number;
   selectedPoll = false;
   loader: boolean;
   errorMessage: string;
@@ -30,22 +29,22 @@ export class VotePollComponent implements OnInit {
     }
   }
 
-  deleteOption(id, opt_id) {
+  deleteOption(id, opt_Id) {
     let index = -1;
     this.pollData.options.forEach((value, key) => {
       if (value["id"] == id) {
         index = key;
       }
     });
-    this.opt_id = opt_id;
-    this.apiServices.deleteOption(id, opt_id).subscribe(
+    this.opt_Id = opt_Id;
+    this.apiServices.deleteOption(id, opt_Id).subscribe(
       res => {
         this.pollData.options.splice(index, 1);
-        this.opt_id = null;
+        this.opt_Id = null;
       },
       err => {
         this.errorMessage = err.data;
-        this.opt_id = null;
+        this.opt_Id = null;
       }
     );
   }
@@ -55,9 +54,9 @@ export class VotePollComponent implements OnInit {
   updatePoll() {
     this.updatePollEmitt.emit(this.pollData.id);
   }
-  onSubmitvote(opt_id) {
+  onSubmitvote(opt_Id) {
     this.loader = true;
-    this.apiServices.vote(this.pollData.id, opt_id.poll).subscribe(
+    this.apiServices.vote(this.pollData.id, opt_Id.poll).subscribe(
       res => {
         this.loader = false;
         if (this.pollArray.indexOf(this.pollData.id) == -1) {
