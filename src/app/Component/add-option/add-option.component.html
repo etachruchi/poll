@@ -9,7 +9,7 @@
             </div>
             <div class="pollform">
                 <form class="form-horizontal" [formGroup]="addOption" (ngSubmit)="onSubmit(addOption)">
-                    <div formArrayName="option" *ngFor="let item of addOption.get('option').controls; let i = index;">
+                    <div formArrayName="option" *ngFor="let item of polloption.controls; let i = index;">
                         <span class="option"> Poll-Option</span>
                         <div [formGroupName]="i">
                             <span>

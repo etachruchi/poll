@@ -28,6 +28,9 @@ export class AddpollComponent implements OnInit {
       option: this.formBuilder.array([this.createOption()])
     });
   }
+  get polloption() {
+    return <FormArray>this.addpollForm.get("option");
+  }
   createOption(): FormGroup {
     return this.formBuilder.group({
       option: new FormControl("", [
@@ -40,15 +43,14 @@ export class AddpollComponent implements OnInit {
     this.option = this.addpollForm.get("option") as FormArray;
     this.option.push(this.createOption());
   }
-  removeinput(index:number): void{
-    if (this.option && this.option.length>1){
-  this.option = this.addpollForm.get("option") as FormArray;
-  this.option.removeAt(index);
-  }
+  removeinput(index: number): void {
+    if (this.option && this.option.length > 1) {
+      this.option = this.addpollForm.get("option") as FormArray;
+      this.option.removeAt(index);
+    }
   }
   onSubmit(formData) {
     this.loading = true;
-    console.log(formData.value);
     this.apiServices.addpoll(formData.value).then(res => {
       this.loading = false;
       if (res && res["error"]) {

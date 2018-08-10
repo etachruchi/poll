@@ -26,6 +26,7 @@ export class AddOptionComponent implements OnInit {
       option: this.formBuilder.array([this.createOption()])
     });
   }
+  get polloption(){ return <FormArray>this.addOption.get('option'); }
   createOption(): FormGroup {
     return this.formBuilder.group({
       option: new FormControl("", [

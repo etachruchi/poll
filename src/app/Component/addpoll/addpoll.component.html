@@ -15,7 +15,7 @@
                         atleast 4 character required.
                     </div>
                 </div>
-                <div formArrayName="option" *ngFor="let item of addpollForm.get('option').controls; let i = index;">
+                <div formArrayName="option" *ngFor="let item of polloption.controls; let i = index;">
                     <span class="polltitle">Option</span>
                     <div [formGroupName]="i">
                         <div class="form-group row">
