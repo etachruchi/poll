@@ -15,6 +15,7 @@ import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from './Component/viewpoll/viewpoll.component';
 import { AddOptionComponent } from './Component/add-option/add-option.component';
 import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
+import { ListusersComponent } from './Component/listusers/listusers.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
     ViewpollComponent,
     AddOptionComponent,
     VotePollComponent,
+    ListusersComponent,
   
   ],
   imports: [

@@ -59,8 +59,7 @@ export class ApiService {
   addpoll(post) {
     const apidata = {
       title: post.title,
-      options:post.option
-      
+      options: post.option
     };
     return new Promise((resolve, reject) => {
       this.http
@@ -98,7 +97,7 @@ export class ApiService {
     );
   }
   addOption(id, post) {
-    const apidata = { options: post.option }
+    const apidata = { options: post.option };
     return this.http.post(
       `${environment["apiBase"]}add_poll_option/${id}`,
       apidata,
@@ -106,11 +105,18 @@ export class ApiService {
     );
   }
   deleteOption(id, opt_id) {
-    return this.http.delete(`${environment["apiBase"]}delete_poll_option/${id}/${opt_id}`, this.httpOptions);
-
+    return this.http.delete(
+      `${environment["apiBase"]}delete_poll_option/${id}/${opt_id}`,
+      this.httpOptions
+    );
   }
   vote(id, opt_id) {
-    return this.http.put(`${environment["apiBase"]}vote/${id}/${opt_id}`, this.httpOptions);
-
+    return this.http.put(
+      `${environment["apiBase"]}vote/${id}/${opt_id}`,
+      this.httpOptions
+    );
+  }
+  listusers() {
+    return this.http.get(`${environment["apiBase"]}list_users`, this.httpOptions);
   }
 }

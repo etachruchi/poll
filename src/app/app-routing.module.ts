@@ -7,6 +7,7 @@ import { AddpollComponent } from './Component/addpoll/addpoll.component';
 import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from "./Component/viewpoll/viewpoll.component";
 import { AddOptionComponent } from "./Component/add-option/add-option.component";
+import { ListusersComponent } from "./Component/listusers/listusers.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: "", redirectTo: "sidemenu/list", pathMatch: "full" },
     { path: "sidemenu/addpoll", component: AddpollComponent },
     { path: "sidemenu/list", component:ListComponent},
+    { path:"sidemenu/listusers",component:ListusersComponent},
     { path: "sidemenu/viewpoll/:id", component: ViewpollComponent },
     { path: "sidemenu/addoption/:id", component: AddOptionComponent}
   ]

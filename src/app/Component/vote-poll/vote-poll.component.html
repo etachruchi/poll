@@ -15,10 +15,7 @@
                                     <input type="radio" value="{{Polls.opt_id}}" name="poll" [(ngModel)]="selectedPoll" *ngIf= "!submitted"> {{Polls.vote}}
                                     <i class="fa fa-trash " aria-hidden="true " (click)=" deleteOption(pollData.id, Polls.opt_id) "></i>
                                     <div *ngIf="opt_Id==Polls.opt_id" class="loader"></div>
-                                    <div class="error">
-                                        <p *ngIf="errorMessage">{{errorMessage}}</p>
-                                    </div>
-                            </span>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -28,13 +25,14 @@
                     <div class="text-center">
 
                         <button *ngIf="!isDisabled(pollData.id)" type="submit" class="btn btn-info mx-auto " [disabled]="!selectedPoll">Vote</button>
+                        <p *ngIf="errorMessage">{{errorMessage}}</p>
                         <p *ngIf="submitted">Vote SuccessFully Submitted</p>
                     </div>
                     <br>
                     <div>
-                        <button type="button" class="btn btn-info " routerLink="/viewpoll/{{pollData.id}} ">Edit</button>
+                        <button type="button" class="btn btn-info " routerLink="/sidemenu/sidemenu/viewpoll/{{pollData.id}}">Edit</button>
                         <button type="button" class="btn btn-danger mx-2" (click)=" deletePoll()">delete</button>
-                        <button type="button" class="btn btn-success " routerLink="/addoption/{{pollData.id}} ">Add Option</button>
+                        <button type="button" class="btn btn-success " routerLink="/sidemenu/sidemenu/addoption/{{pollData.id}}">Add Option</button>
                     </div>
 
                 </div>
