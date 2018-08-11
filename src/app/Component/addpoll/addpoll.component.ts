@@ -56,7 +56,7 @@ export class AddpollComponent implements OnInit {
       if (res && res["error"]) {
         this.errorMessage = res["data"];
       } else {
-        this.router.navigate(["/sidemenu"]);
+        this.router.navigate(["/sidemenu/list"]);
       }
     });
   }

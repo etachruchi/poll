@@ -15,12 +15,12 @@ export const routes: Routes = [
   { path: "register", component: RegisterComponent} ,
   { path: "sidemenu", component: SidemenuComponent ,
   children:[
-    { path: "", redirectTo: "sidemenu/list", pathMatch: "full" },
-    { path: "sidemenu/addpoll", component: AddpollComponent },
-    { path: "sidemenu/list", component:ListComponent},
-    { path:"sidemenu/listusers",component:ListusersComponent},
-    { path: "sidemenu/viewpoll/:id", component: ViewpollComponent },
-    { path: "sidemenu/addoption/:id", component: AddOptionComponent}
+    { path: "", redirectTo: "/list", pathMatch: "full" },
+    { path: "addpoll", component: AddpollComponent },
+    { path: "list", component:ListComponent},
+    { path:"listusers",component:ListusersComponent},
+    { path: "viewpoll/:id", component: ViewpollComponent },
+    { path: "addoption/:id", component: AddOptionComponent}
   ]
   }
 ];
