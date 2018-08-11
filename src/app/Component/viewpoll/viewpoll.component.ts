@@ -31,7 +31,7 @@ export class ViewpollComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.apiServices.editpolltitle(this.id, formData.value).subscribe(res => {
       this.loading = false;
-      this.router.navigate(["/list"]);
+      this.router.navigate(["/sidemenu/list"]);
       this.titleEdit.reset();
     });
   }

@@ -18,7 +18,7 @@ export class VotePollComponent implements OnInit {
   selectedPoll = false;
   loader: boolean;
   errorMessage: string;
-  submitted:boolean;
+  submitted: boolean;
   pollArray: Array<number> = [];
 
   constructor(private apiServices: ApiService) {}
@@ -39,8 +39,13 @@ export class VotePollComponent implements OnInit {
     this.opt_Id = opt_Id;
     this.apiServices.deleteOption(id, opt_Id).subscribe(
       res => {
+        if(res["error"]){
+          this.errorMessage=res["message"];
+        }else{
+          this.errorMessage = res["message"];
         this.pollData.options.splice(index, 1);
         this.opt_Id = null;
+        }
       },
       err => {
         this.errorMessage = err.data;
@@ -58,25 +63,28 @@ export class VotePollComponent implements OnInit {
     this.loader = true;
     this.apiServices.vote(this.pollData.id, opt_Id.poll).subscribe(
       res => {
-        this.loader = false;
-        if (this.pollArray.indexOf(this.pollData.id) == -1) {
-          this.pollArray.push(this.pollData.id);
-          localStorage.setItem("poll", JSON.stringify(this.pollArray));
+        if (res["error"]) {
+          this.errorMessage = res["message"];
+        } else {
+          if (this.pollArray.indexOf(this.pollData.id) == -1) {
+            this.pollArray.push(this.pollData.id);
+            localStorage.setItem("poll", JSON.stringify(this.pollArray));
+          }
+          this.updatePollEmitt.emit(res["data"]);
         }
-        this.updatePollEmitt.emit(res["data"]);
+        this.loader = false;
       },
       err => {
-        this.errorMessage = err.data;
         this.loader = false;
       }
     );
   }
   isDisabled(id) {
     if (this.pollArray.indexOf(id) != -1) {
-      this.submitted=true;
+      this.submitted = true;
       return true;
     } else {
-      this.submitted=false;
+      this.submitted = false;
       return false;
     }
   }

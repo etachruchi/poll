@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       .postlogin(formData.value)
       .then(res => {
         this.loading = false;
-        this.router.navigate(["/sidemenu"]);
+        this.router.navigate(["/sidemenu/list"]);
         this.loginForm.reset();
       })
       .catch(err => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../services/apiservice";
-import { list } from "../model";
+import { list } from "../model/listmodel";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
@@ -24,7 +24,10 @@ export class ListComponent implements OnInit {
 
   getPolls() {
     this.apiServices.listpolls().subscribe(res => {
-      if (res && res["data"]) {
+      if(res["error"]){
+        this.errorMessage=res["message"];
+      }
+     else{
         this.list = res["data"].reverse();    
       }
     });
@@ -38,10 +41,13 @@ export class ListComponent implements OnInit {
         index = key;
       }
     });
-    this.apiServices.deletePoll(id).subscribe(res => {
+    this.apiServices.deletePoll(5000).subscribe(res => {
+      if(res["error"]){
+        this.errorMessage=res["message"];
+      }else{
       this.loader=false;
       this.list.splice(index, 1);
-    },(err)=>{
+    }},(err)=>{
       this.loader=false;
     });
   }
