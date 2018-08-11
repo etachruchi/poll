@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../services/apiservice";
-import { user } from "../model";
+import { user } from "../model/usermodel";
 @Component({
   selector: "app-listusers",
   templateUrl: "./listusers.component.html",

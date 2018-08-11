@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../../services/apiservice";
-import { list } from "../model";
+import { list } from "../model/listmodel";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
