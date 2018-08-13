@@ -8,12 +8,14 @@ import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from "./Component/viewpoll/viewpoll.component";
 import { AddOptionComponent } from "./Component/add-option/add-option.component";
 import { ListusersComponent } from "./Component/listusers/listusers.component";
+import { AuthGuard } from "./auth.guard";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login", component: LoginComponent },
+  { path: "login",  component: LoginComponent },
   { path: "register", component: RegisterComponent} ,
-  { path: "sidemenu", component: SidemenuComponent ,
+  {
+    path: "sidemenu", canActivate: [AuthGuard],component: SidemenuComponent ,
   children:[
     { path: "", redirectTo: "/list", pathMatch: "full" },
     { path: "addpoll", component: AddpollComponent },

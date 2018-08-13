@@ -16,7 +16,7 @@ import { ViewpollComponent } from './Component/viewpoll/viewpoll.component';
 import { AddOptionComponent } from './Component/add-option/add-option.component';
 import { VotePollComponent } from './Component/vote-poll/vote-poll.component';
 import { ListusersComponent } from './Component/listusers/listusers.component';
-
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { ListusersComponent } from './Component/listusers/listusers.component';
     ViewpollComponent,
     AddOptionComponent,
     VotePollComponent,
-    ListusersComponent,
-  
+    ListusersComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +38,9 @@ import { ListusersComponent } from './Component/listusers/listusers.component';
     RouterModule,
     AppRoutingModule,
     FormsModule
+  
   ],
-  providers: [ApiService],
+  providers: [ApiService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
