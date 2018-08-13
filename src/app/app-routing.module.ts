@@ -8,21 +8,22 @@ import { ListComponent } from './Component/list/list.component';
 import { ViewpollComponent } from "./Component/viewpoll/viewpoll.component";
 import { AddOptionComponent } from "./Component/add-option/add-option.component";
 import { ListusersComponent } from "./Component/listusers/listusers.component";
+import { AppComponent } from "./app.component";
 import { AuthGuard } from "./auth.guard";
 
 export const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login",  component: LoginComponent },
-  { path: "register", component: RegisterComponent} ,
+  { path: "login", canActivate: [AuthGuard],component: LoginComponent },
+  { path: "register", canActivate: [AuthGuard],component: RegisterComponent} ,
   {
     path: "sidemenu", canActivate: [AuthGuard],component: SidemenuComponent ,
   children:[
     { path: "", redirectTo: "/list", pathMatch: "full" },
-    { path: "addpoll", component: AddpollComponent },
-    { path: "list", component:ListComponent},
-    { path:"listusers",component:ListusersComponent},
-    { path: "viewpoll/:id", component: ViewpollComponent },
-    { path: "addoption/:id", component: AddOptionComponent}
+    { path: "addpoll", canActivate: [AuthGuard], component: AddpollComponent },
+    { path: "list", canActivate: [AuthGuard],  component:ListComponent},
+    { path: "listusers", canActivate: [AuthGuard],component:ListusersComponent},
+    { path: "viewpoll/:id", canActivate: [AuthGuard], component: ViewpollComponent },
+    { path: "addoption/:id", canActivate: [AuthGuard], component: AddOptionComponent}
   ]
   }
 ];

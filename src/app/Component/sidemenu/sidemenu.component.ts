@@ -6,7 +6,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./sidemenu.component.css"]
 })
 export class SidemenuComponent implements OnInit {
-  constructor( private router: Router) {}
+  constructor( private router: Router) {
+    }
 
   ngOnInit() {}
   logOut() {

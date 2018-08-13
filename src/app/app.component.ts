@@ -8,16 +8,7 @@ import { Router } from '@angular/router'
 export class AppComponent {
   title = 'app';
   constructor(private router: Router) { 
-   this.isLogedIn();
   }
-  isLogedIn() {
-    if (JSON.parse(localStorage.getItem("token"))) {
-      this.router.navigate(["/sidemenu]"]);
-    }
-    else{
-      this.router.navigate(["/login"]);
-
-    }
-  }
+ 
 }
 

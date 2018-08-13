@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-@Injectable() 
+@Injectable()
 export class ApiService {
   token: string;
+  title: string;
   role: string;
   httpOptions = {
     headers: new HttpHeaders({
@@ -11,7 +12,7 @@ export class ApiService {
       api_token: JSON.parse(localStorage.getItem("token"))
     })
   };
- 
+
   constructor(private http: HttpClient) {}
 
   postlogin(post) {
@@ -24,9 +25,8 @@ export class ApiService {
           if (data["error"] && data["error"] === 1) {
             reject(data);
           } else {
-            this.token = data["data"].api_token;  
+            this.token = data["data"].api_token;
             localStorage.setItem("token", JSON.stringify(this.token));
-
             this.httpOptions = {
               headers: new HttpHeaders({
                 "Content-Type": "application/json",
@@ -69,6 +69,8 @@ export class ApiService {
           if (data["error"] && data["error"] === 1) {
             reject(data);
           } else {
+            this.title = this.title = data["data"].title;
+            localStorage.setItem("token", JSON.stringify(this.title));
             resolve(data);
           }
         });
@@ -77,7 +79,9 @@ export class ApiService {
 
   listpolls() {
     return this.http.get(
-      `${environment["apiBase"]}list_polls`,this.httpOptions);
+      `${environment["apiBase"]}list_polls`,
+      this.httpOptions
+    );
   }
   editpolltitle(id, post) {
     const apidata = {
@@ -116,6 +120,9 @@ export class ApiService {
     );
   }
   listusers() {
-    return this.http.get(`${environment["apiBase"]}list_users`, this.httpOptions);
+    return this.http.get(
+      `${environment["apiBase"]}list_users`,
+      this.httpOptions
+    );
   }
 }
