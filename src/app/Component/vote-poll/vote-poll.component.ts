@@ -45,6 +45,7 @@ export class VotePollComponent implements OnInit {
           this.errorMessage = res["message"];
         this.pollData.options.splice(index, 1);
         this.opt_Id = null;
+       
         }
       },
       err => {

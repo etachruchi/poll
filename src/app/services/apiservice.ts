@@ -4,11 +4,12 @@ import { environment } from "../../environments/environment";
 @Injectable()
 export class ApiService {
   token: string;
+  title: string;
   role: string;
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
-      api_token: localStorage.getItem("token")
+      api_token: JSON.parse(localStorage.getItem("token"))
     })
   };
 
@@ -25,11 +26,11 @@ export class ApiService {
             reject(data);
           } else {
             this.token = data["data"].api_token;
-            localStorage.setItem("token", this.token);
+            localStorage.setItem("token", JSON.stringify(this.token));
             this.httpOptions = {
               headers: new HttpHeaders({
                 "Content-Type": "application/json",
-                api_token: localStorage.getItem("token")
+                api_token: JSON.parse(localStorage.getItem("token"))
               })
             };
             resolve(data);
@@ -68,6 +69,8 @@ export class ApiService {
           if (data["error"] && data["error"] === 1) {
             reject(data);
           } else {
+            this.title = this.title = data["data"].title;
+            localStorage.setItem("token", JSON.stringify(this.title));
             resolve(data);
           }
         });
@@ -117,6 +120,9 @@ export class ApiService {
     );
   }
   listusers() {
-    return this.http.get(`${environment["apiBase"]}list_users`, this.httpOptions);
+    return this.http.get(
+      `${environment["apiBase"]}list_users`,
+      this.httpOptions
+    );
   }
 }

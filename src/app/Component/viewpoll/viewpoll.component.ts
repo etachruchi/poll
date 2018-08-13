@@ -20,6 +20,7 @@ export class ViewpollComponent implements OnInit {
 
   ngOnInit() {
     this.addPollForm();
+    JSON.parse(localStorage.getItem("title"))
   }
   addPollForm() {
     this.titleEdit = new FormGroup({
@@ -30,6 +31,7 @@ export class ViewpollComponent implements OnInit {
     this.loading = true;
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.apiServices.editpolltitle(this.id, formData.value).subscribe(res => {
+     
       this.loading = false;
       this.router.navigate(["/sidemenu/list"]);
       this.titleEdit.reset();

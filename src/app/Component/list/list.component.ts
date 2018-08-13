@@ -24,10 +24,7 @@ export class ListComponent implements OnInit {
 
   getPolls() {
     this.apiServices.listpolls().subscribe(res => {
-      if(res["error"]){
-        this.errorMessage=res["message"];
-      }
-     else{
+      if (res && res["data"]) {
         this.list = res["data"].reverse();    
       }
     });
@@ -41,13 +38,10 @@ export class ListComponent implements OnInit {
         index = key;
       }
     });
-    this.apiServices.deletePoll(5000).subscribe(res => {
-      if(res["error"]){
-        this.errorMessage=res["message"];
-      }else{
+    this.apiServices.deletePoll(id).subscribe(res => {
       this.loader=false;
       this.list.splice(index, 1);
-    }},(err)=>{
+    },(err)=>{
       this.loader=false;
     });
   }
